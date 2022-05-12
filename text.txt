@@ -1,0 +1,118 @@
+AIzaSyB-V7rpLMxtEHlyGZYXjQE__saEuaWq2Wo
+
+
+
+
+import React from 'react'
+
+const lon = 20.3068;
+const lat = 63.8207;
+let year = 2020;
+
+class WheaterAPI extends React.Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      isLoaded: false,
+      year: props.inputYear
+    }
+  }
+
+  componentDidMount() {
+
+    fetch(`https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=RE&longitude=${lon}&latitude=${lat}&start=${year}&end=${year}`)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          items: json,
+          isLoaded: true,
+          year: year
+        })
+        console.log(year);
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+
+  render() {
+
+    const { isLoaded, items } = this.state;
+
+    if (!isLoaded)
+      return <div>Loading...</div>;
+
+    // Hämta nestlad data
+    const data = this.state.items.properties.parameter.T2M;
+
+    return (
+      <div>
+        <ul>
+          {
+            Object.keys(data).map((temp, index) => 
+            <li key={index}>{temp} : {data[temp]}</li>)
+          }
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default WheaterAPI;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from 'react'
+
+
+function WheaterAPI(props) {
+  
+  const [Users, fetchUsers] = useState([])
+
+  const getData = () => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+        fetchUsers(res)
+      })
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+
+  return (
+    <div>
+      {props.inputYear}
+      <ul>
+        {Users.map((item, i) => {
+          return <li key={i}>{item.name}</li>
+        })}
+      </ul>
+    </div>
+  )
+}
+
+export default WheaterAPI

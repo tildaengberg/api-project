@@ -1,0 +1,44 @@
+import React, { useState, useEffect } from 'react'
+
+
+function WheaterAPI(props) {
+
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
+  const lon = 20.3068;
+  const lat = 63.8207;
+  let year = 2020;
+
+  React.useEffect(() => {
+    const url = `https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=RE&longitude=${lon}&latitude=${lat}&start=${year}&end=${year}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => setData(json['results']))
+      .catch((error) => console.log(error));
+  }, []);
+
+  React.useEffect(() => {
+    if (data.length !== 0) {
+      setIsLoading(false);
+    }
+    console.log(data);
+  }, [data]);
+
+  return (
+    <div>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <ul>
+          {
+            Items.properties.parameter.T2M.map((item, i) => {
+              return <li key={i}>{item.properties.parameter.T2M} : {Items.properties.parameter.T2M[item]}</li>
+            })
+          }
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default WheaterAPI

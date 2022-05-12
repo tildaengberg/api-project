@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Map from './components/Map'
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import './index.css';
+import TextInput from '../src/components/TextInput'
+
+mapboxgl.accessToken = 'pk.eyJ1IjoidGlsZGFlbmdiZXJnIiwiYSI6ImNsMnl5MzJncjAwOHYzbW54eTFzejg1ZGMifQ.ie_PPWJP64gL1nOeIXtUZQ';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <h1>WheaterAPI</h1>
+      <TextInput/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
