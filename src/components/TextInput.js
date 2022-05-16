@@ -27,7 +27,7 @@ class TextInput extends React.PureComponent {
     const { lng, lat, zoom } = this.state;
     const map = new mapboxgl.Map({
       container: this.mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/tildaengberg/cl38ffigc004l14qvhpckuhx2',
       center: [lng, lat],
       zoom: zoom
     });
@@ -47,6 +47,7 @@ class TextInput extends React.PureComponent {
     });
     
   }
+  
 
   // Sätt nytt state av året
   handleChangeYear(e) {
