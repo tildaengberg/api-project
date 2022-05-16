@@ -9,7 +9,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGlsZGFlbmdiZXJnIiwiYSI6ImNsMnl5MzJncjAwOHYzb
 function App() {
   return (
     <div>
-    <h1>WheaterAPI</h1>
       <TextInput/>
     </div>
   )

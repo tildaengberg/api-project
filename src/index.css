@@ -1,5 +1,43 @@
+select {
+    background-color: white;
+    color: black;
+    padding: 12px;
+    width: 140px;
+    border: none;
+    font-size: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+  }
+  
+  select::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+  
+  select:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  select option {
+    padding: 30px;
+  }
+
+
 .map-container {
-    height: 400px;
+    height: 100vh;
+    width: 100vw;
 }
 
 .sidebar {
@@ -24,4 +62,60 @@
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
-  }
+}
+
+.map-container {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 1fr 1.5fr 1fr;
+}
+
+.wrapper {
+    grid-column: 2/4;
+    grid-row: 2/3;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1.5fr 1fr;
+    padding: 10%;
+    box-shadow:
+    10px 6px 33px 7px rgba(0,0,0,0.13);
+}
+
+.text-info {
+    z-index: 10;
+    position: absolute;
+    grid-column: 1/3;
+    grid-row: 1/2;
+    width: 100%;
+}
+
+.inputYear {
+    z-index: 10;
+    position: absolute;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    justify-self: center;
+}
+
+.inputMonth {
+    z-index: 10;
+    position: absolute;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    justify-self: center;
+}
+
+.output-banner {
+    z-index: 10;
+    position: absolute;
+    grid-column: 1/3;
+    grid-row: 3/4;
+    justify-self: center;
+}

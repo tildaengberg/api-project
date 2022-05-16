@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import '../index.css';
 
 function WheaterAPI(props) {
 
@@ -38,7 +39,7 @@ function WheaterAPI(props) {
     const data = Items.properties.parameter.T2M;
     const temp = Object.values(data)[(props.inputMonth)-1];
     return (
-      <div>
+      <div className='output-banner'>
       <p>Under året {props.inputYear} och månad {props.inputMonth} var det i genomsnitt:</p>
       <p><b>{temp} grader</b></p>
       </div>

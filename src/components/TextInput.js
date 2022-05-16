@@ -16,7 +16,7 @@ class TextInput extends React.PureComponent {
       month: '',
       lng: '',
       lat: '',
-      zoom: 9
+      zoom: 3
     };
     // Skapar kartan
     this.mapContainer = React.createRef();
@@ -39,15 +39,15 @@ class TextInput extends React.PureComponent {
 
 
     // Sätter koorinaterna uppdaterar states
-    marker.on('dragend', () =>{
+    marker.on('dragend', () => {
       this.setState({
         lng: marker.getLngLat().lng,
         lat: marker.getLngLat().lat,
       });
     });
-    
+
   }
-  
+
 
   // Sätt nytt state av året
   handleChangeYear(e) {
@@ -71,30 +71,89 @@ class TextInput extends React.PureComponent {
     // Skickar parametrarna till apiet
     if (year >= 1991 && year <= 2021 && month >= 1 && month <= 12 && lng !== '' && lat !== '') {
       return (
-        <div>
-          <legend>Enter year: {year}</legend>
-          <input
-            placeholder="YYYY"
-            value={year}
-            onChange={this.handleChangeYear} />
-          <legend>Enter month: {month}</legend>
-          <input
-            placeholder="MM"
-            value={month}
-            onChange={this.handleChangeMonth} />
-
-          <div className='map'>
-            <div className="sidebar">
-              Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-            </div>
-            <div ref={this.mapContainer} className="map-container"/>
+        <div className='map'>
+          <div className="sidebar">
+            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
           </div>
-          <WheaterAPI
-            inputYear={parseFloat(year)}
-            inputMonth={parseFloat(month)}
-            inputLat={parseFloat(lat)}
-            inputLng={parseFloat(lng)}
-          />
+          <div ref={this.mapContainer} className="map-container">
+
+            <div className='wrapper'>
+
+            <div className='text-info'>
+                <h3>WheaterMap</h3>
+                <p>Move the map marker to start exploring the wheater.</p>
+              </div>
+
+
+
+              <div className='inputYear'>
+                <select
+                  type='number'
+                  placeholder="YYYY"
+                  value={year}
+                  onChange={this.handleChangeYear}
+                >
+                  <option value='1991'>1991</option>
+                  <option value='1992'>1992</option>
+                  <option value='1993'>1993</option>
+                  <option value='1994'>1994</option>
+                  <option value='1995'>1995</option>
+                  <option value='1996'>1996</option>
+                  <option value='1997'>1997</option>
+                  <option value='1998'>1998</option>
+                  <option value='1999'>1999</option>
+                  <option value='2000'>2000</option>
+                  <option value='2001'>2001</option>
+                  <option value='2002'>2002</option>
+                  <option value='2003'>2003</option>
+                  <option value='2004'>2004</option>
+                  <option value='2005'>2005</option>
+                  <option value='2006'>2006</option>
+                  <option value='2007'>2007</option>
+                  <option value='2008'>2008</option>
+                  <option value='2009'>2009</option>
+                  <option value='2010'>2010</option>
+                  <option value='2011'>2011</option>
+                  <option value='2012'>2012</option>
+                  <option value='2013'>2013</option>
+                  <option value='2014'>2014</option>
+                  <option value='2015'>2015</option>
+                  <option value='2016'>2016</option>
+                </select>
+              </div>
+
+
+              <div className='inputMonth'>
+                <select
+                  type='number'
+                  placeholder="MM"
+                  value={month}
+                  onChange={this.handleChangeMonth}
+                >
+                  <option value='1'>January</option>
+                  <option value='2'>February</option>
+                  <option value='3'>Mars</option>
+                  <option value='4'>April</option>
+                  <option value='5'>May</option>
+                  <option value='6'>June</option>
+                  <option value='7'>July</option>
+                  <option value='8'>August</option>
+                  <option value='9'>September</option>
+                  <option value='10'>Oktober</option>
+                  <option value='11'>November</option>
+                  <option value='12'>December</option>
+                </select>
+              </div>
+
+              <WheaterAPI
+                inputYear={parseFloat(year)}
+                inputMonth={parseFloat(month)}
+                inputLat={parseFloat(lat)}
+                inputLng={parseFloat(lng)}
+              />
+            </div>
+          </div>
+
         </div>
 
       );
@@ -104,24 +163,80 @@ class TextInput extends React.PureComponent {
     // När användaren inte matat in något värde
     else {
       return (
-        <div>
-          <legend>Enter year: {year}</legend>
-          <input
-            type='number'
-            placeholder="YYYY"
-            value={year}
-            onChange={this.handleChangeYear} />
-          <legend>Enter month: {month}</legend>
-          <input
-            type='number'
-            placeholder="MM"
-            value={month}
-            onChange={this.handleChangeMonth} />
-          <div className='map'>
-            <div className="sidebar">
-              Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+        <div className='map'>
+          <div className="sidebar">
+            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+          </div>
+          <div ref={this.mapContainer} className="map-container">
+
+            <div className='wrapper'>
+              <div className='text-info'>
+                <h3>WheaterMap</h3>
+                <p>Move the map marker to start exploring the wheater.</p>
+              </div>
+
+
+
+              <div className='inputYear'>
+                <select
+                  type='number'
+                  placeholder="YYYY"
+                  value={year}
+                  onChange={this.handleChangeYear}
+                >
+                  <option value='1991'>1991</option>
+                  <option value='1992'>1992</option>
+                  <option value='1993'>1993</option>
+                  <option value='1994'>1994</option>
+                  <option value='1995'>1995</option>
+                  <option value='1996'>1996</option>
+                  <option value='1997'>1997</option>
+                  <option value='1998'>1998</option>
+                  <option value='1999'>1999</option>
+                  <option value='2000'>2000</option>
+                  <option value='2001'>2001</option>
+                  <option value='2002'>2002</option>
+                  <option value='2003'>2003</option>
+                  <option value='2004'>2004</option>
+                  <option value='2005'>2005</option>
+                  <option value='2006'>2006</option>
+                  <option value='2007'>2007</option>
+                  <option value='2008'>2008</option>
+                  <option value='2009'>2009</option>
+                  <option value='2010'>2010</option>
+                  <option value='2011'>2011</option>
+                  <option value='2012'>2012</option>
+                  <option value='2013'>2013</option>
+                  <option value='2014'>2014</option>
+                  <option value='2015'>2015</option>
+                  <option value='2016'>2016</option>
+                </select>
+              </div>
+
+
+              <div className='inputMonth'>
+                <select
+                  type='number'
+                  placeholder="MM"
+                  value={month}
+                  onChange={this.handleChangeMonth}
+                >
+                  <option value='1'>January</option>
+                  <option value='2'>February</option>
+                  <option value='3'>Mars</option>
+                  <option value='4'>April</option>
+                  <option value='5'>May</option>
+                  <option value='6'>June</option>
+                  <option value='7'>July</option>
+                  <option value='8'>August</option>
+                  <option value='9'>September</option>
+                  <option value='10'>Oktober</option>
+                  <option value='11'>November</option>
+                  <option value='12'>December</option>
+                </select>
+              </div>
+
             </div>
-            <div ref={this.mapContainer} className="map-container" />
           </div>
         </div>
       );
