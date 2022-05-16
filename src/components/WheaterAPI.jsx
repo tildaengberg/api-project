@@ -10,23 +10,26 @@ function WheaterAPI(props) {
   console.log(props.inputLat)
   console.log(props.inputLng)
 
-  const getData = () => {
-    fetch(`https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=RE&longitude=${props.inputLng}&latitude=${props.inputLat}&start=${props.inputYear}&end=${props.inputYear}`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res)
-        fetchItems(res)
-      })
-      .then((res) => setLoaded(true))
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+
+  
 
   useEffect(() => {
-    getData()
-  }, [])
+    const getData = () => {
+      fetch(`https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=T2M&community=RE&longitude=${props.inputLng}&latitude=${props.inputLat}&start=${props.inputYear}&end=${props.inputYear}`)
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res)
+          fetchItems(res)
+        })
+        .then((res) => setLoaded(true))
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getData();
+  }, []);
 
+  console.log(Items)
 
   if (!isLoaded) {
     return <div>Loading...</div>

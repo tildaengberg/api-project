@@ -1,23 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 import WheaterAPI from './WheaterAPI';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import '../index.css';
 
+
+// Klassen
 class TextInput extends React.PureComponent {
   constructor(props) {
     super(props);
+    // Hantera ändringar
     this.handleChangeYear = this.handleChangeYear.bind(this);
     this.handleChangeMonth = this.handleChangeMonth.bind(this);
     this.state = {
       year: '',
       month: '',
-      lng: 20.3068,
-      lat: 63.8207,
+      lng: '',
+      lat: '',
       zoom: 9
     };
+    // Skapar kartan
     this.mapContainer = React.createRef();
   }
 
+  // Omrenderar sidan när kartan uppdateras
   componentDidMount() {
     const { lng, lat, zoom } = this.state;
     const map = new mapboxgl.Map({
@@ -27,11 +32,13 @@ class TextInput extends React.PureComponent {
       zoom: zoom
     });
 
+    // Markören och sparar koordinater
     const marker = new mapboxgl.Marker({
       draggable: true
     }).setLngLat([lng, lat]).addTo(map);
 
 
+    // Sätter koorinaterna uppdaterar states
     marker.on('dragend', () =>{
       this.setState({
         lng: marker.getLngLat().lng,
@@ -39,33 +46,29 @@ class TextInput extends React.PureComponent {
       });
     });
     
-
-    /*map.on('move', () => {
-      this.setState({
-        lng: map.getCenter().lng.toFixed(4),
-        lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
-      });
-    });*/
   }
 
-
+  // Sätt nytt state av året
   handleChangeYear(e) {
     this.setState({ year: e.target.value });
   }
 
+  // Sätt nytt state av månaden
   handleChangeMonth(e) {
     this.setState({ month: e.target.value });
   }
 
 
+  // DET SOM SKA UT PÅ SIDAN
   render() {
 
     const year = this.state.year;
     const month = this.state.month;
     const { lng, lat, zoom } = this.state;
 
-    if (year >= 1991 && year <= 2021 && month >= 1 && month <= 12) {
+    // När användaren matat in giltiga värder på år och månad
+    // Skickar parametrarna till apiet
+    if (year >= 1991 && year <= 2021 && month >= 1 && month <= 12 && lng !== '' && lat !== '') {
       return (
         <div>
           <legend>Enter year: {year}</legend>
@@ -78,24 +81,26 @@ class TextInput extends React.PureComponent {
             placeholder="MM"
             value={month}
             onChange={this.handleChangeMonth} />
-          <WheaterAPI
-            inputYear={parseFloat(year)}
-            inputMonth={parseFloat(month)}
-            inputLat={lat}
-            inputLng={lng}
-          />
 
           <div className='map'>
             <div className="sidebar">
               Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
             </div>
-            <div ref={this.mapContainer} className="map-container" />
+            <div ref={this.mapContainer} className="map-container"/>
           </div>
+          <WheaterAPI
+            inputYear={parseFloat(year)}
+            inputMonth={parseFloat(month)}
+            inputLat={parseFloat(lat)}
+            inputLng={parseFloat(lng)}
+          />
         </div>
 
       );
     }
 
+
+    // När användaren inte matat in något värde
     else {
       return (
         <div>
