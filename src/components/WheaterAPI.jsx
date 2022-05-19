@@ -33,15 +33,17 @@ function WheaterAPI(props) {
   console.log(Items)
 
   if (!isLoaded) {
-    return <div>Loading...</div>
+    return <div></div>
   }
   else {
     const data = Items.properties.parameter.T2M;
     const temp = Object.values(data)[(props.inputMonth)-1];
     return (
       <div className='output-banner'>
-      <p>Under året {props.inputYear} och månad {props.inputMonth} var det i genomsnitt:</p>
-      <p><b>{temp} grader</b></p>
+        <div className='output-text'>
+          <p>Genomsnittlig temperatur</p>
+          <h4><b>{temp} grader</b></h4>
+        </div>
       </div>
     )
 

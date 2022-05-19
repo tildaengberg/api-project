@@ -72,19 +72,15 @@ class TextInput extends React.PureComponent {
     if (year >= 1991 && year <= 2021 && month >= 1 && month <= 12 && lng !== '' && lat !== '') {
       return (
         <div className='map'>
-          <div className="sidebar">
-            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-          </div>
+
           <div ref={this.mapContainer} className="map-container">
 
             <div className='wrapper'>
 
             <div className='text-info'>
-                <h3>WheaterMap</h3>
-                <p>Move the map marker to start exploring the wheater.</p>
-              </div>
-
-
+              <h3>Weather Map</h3>
+              <p>Move the map marker to start exploring the weather.</p>
+            </div>
 
               <div className='inputYear'>
                 <select
@@ -164,18 +160,14 @@ class TextInput extends React.PureComponent {
     else {
       return (
         <div className='map'>
-          <div className="sidebar">
-            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-          </div>
+
           <div ref={this.mapContainer} className="map-container">
 
             <div className='wrapper'>
               <div className='text-info'>
-                <h3>WheaterMap</h3>
-                <p>Move the map marker to start exploring the wheater.</p>
-              </div>
-
-
+                <h3>Weather Map</h3>
+                <p>Move the map marker to start exploring the weather.</p>
+            </div>
 
               <div className='inputYear'>
                 <select
