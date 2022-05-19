@@ -1,3 +1,7 @@
+*{
+    top: 0;
+    margin: 0;
+}
 select {
     background-color: white;
     color: black;
@@ -54,9 +58,6 @@ select {
     border-radius: 4px;
 }
 
-.map {
-    padding-top: 5vh;
-}
 
 .marker {
     background-size: cover;
@@ -123,6 +124,7 @@ ion-icon {
     grid-column: 2/4;
     grid-row: 1/2;
     width: 100%;
+    line-height: 2;
 }
 
 .inputYear {
@@ -162,5 +164,5 @@ ion-icon {
 .output-text p {
     font-size: 11px;
     color: rgb(99, 96, 218);
-    margin-bottom: -10px;
+    line-height: 4;
 }
