@@ -8,7 +8,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGlsZGFlbmdiZXJnIiwiYSI6ImNsMnl5MzJncjAwOHYzb
 
 function App() {
   return (
-    <div>
+    <div className='site'>
       <TextInput/>
     </div>
   )
